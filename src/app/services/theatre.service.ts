@@ -16,7 +16,7 @@ export class TheatreService {
     this.myApiUrl = '/api/teatro';
    }
 
-   getListTheatress():Observable<Theatre[]> {
+   getListTheatres():Observable<Theatre[]> {
     return this.http.get<Theatre[]>(`${this.myAppUrl}${this.myApiUrl}`);
    }
 

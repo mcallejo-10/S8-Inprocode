@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { Theatre } from '../../interfaces/theatre';
 import { RouterLink } from '@angular/router';
 import { TheatreService } from '../../services/theatre.service';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -15,6 +16,7 @@ export class HomeComponent {
   listTheatres: Theatre[] = [];
   loading: boolean = false;
   theatreService = inject(TheatreService)
+  toastr = inject(ToastrService)
 
   ngOnInit() {
     this.getListTheatres();
@@ -35,7 +37,7 @@ export class HomeComponent {
     this.theatreService.deleteTheatre(id).subscribe(() => {
       this.getListTheatres();
       this.loading = false;
-      // this.toastr.success('Producto eliminado con éxito', 'Producto eliminado')
+      this.toastr.warning('Producto eliminado con éxito', 'Producto eliminado')
       
 
     })

@@ -1,1 +1,135 @@
-<p>add-edit works!</p>
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-6 col-md-6 col-sm-10">
+        <div class="card border-primary mb-3" style="max-width: 25rem;">
+            <div class="card-header">Agregar teatro</div>
+            <div class="card-body">
+                <form [formGroup]="form">
+                    <input formControlName="name" type="text" class="form-control" placeholder="Nombre" [ngClass]="{
+                        'is-invalid':
+                          form.get('name')?.invalid &&
+                          form.get('name')?.touched
+                      }" />
+                    @if(form.get('name')?.invalid &&
+                    form.get('name')?.touched) {
+                    <div class="text-danger">
+                        @if(form.get('name')?.errors?.['required']) { Name is
+                        required }
+                    </div>
+                    }
+
+                    <input formControlName="address" type="text" class="form-control mt-2" placeholder="Dirección"
+                        [ngClass]="{
+                        'is-invalid':
+                          form.get('address')?.invalid &&
+                          form.get('address')?.touched
+                      }">
+                    @if(form.get('address')?.invalid &&
+                    form.get('address')?.touched) {
+                    <div class="text-danger">
+                        @if(form.get('address')?.errors?.['required']) { Name is
+                        required }
+                    </div>
+                    }
+
+
+                    <input formControlName="phone" type="text" class="form-control mt-2" placeholder="Teléfono"
+                        [ngClass]="{
+                        'is-invalid':
+                          form.get('phone')?.invalid &&
+                          form.get('phone')?.touched
+                      }">
+                    @if(form.get('phone')?.invalid &&
+                    form.get('phone')?.touched) {
+                    <div class="text-danger">
+                        @if(form.get('phone')?.errors?.['required']) { Name is
+                        required }
+                    </div>
+                    }
+                    <input formControlName="seat_count" type="number" class="form-control mt-2"
+                        placeholder="Número de butacas" [ngClass]="{
+                        'is-invalid':
+                          form.get('seat_count')?.invalid &&
+                          form.get('seat_count')?.touched
+                      }">
+                    @if(form.get('seat_count')?.invalid &&
+                    form.get('seat_count')?.touched) {
+                    <div class="text-danger">
+                        @if(form.get('seat_count')?.errors?.['required']) { Name is
+                        required }
+                    </div>
+                    }
+
+
+                    <div class="form-group form-check mt-2">
+                        <label class="form-check-label" for="accessible">¿Es accesible para silla de ruedas?</label>
+
+                        <input type="checkbox" id="accessible" formControlName="accessible"
+                            class="form-check-input" />
+                    </div>
+                    
+                </form>
+
+                <div class="row mt-4 text-center">
+                    <div class="col-6">
+                        <a class="btn btn-secondary" routerLink="/">Volver</a>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" (click)="addTheatre()" class="btn btn-sm btn-primary">Aceptar</button>
+                    </div>
+                </div>
+
+
+                @if(errorMessage){
+                <span class="d-flex justify-content-center">
+                    <div class="text-danger">
+                        {{ errorMessage }}
+                    </div>
+                </span>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+                    <!-- <div class="form-control mt-2 d-flex row border-0" formControlName="bar">
+                        <label for="answer" class="col-6">Tiene bar?</label>
+                        <div class="form-check col-2 ms-auto">
+                            <input class="form-check-input" type="radio" id="answerYes" name="barRadio" value="true">
+                            <label class="form-check-label" for="answerYes">Sí</label>
+                        </div>
+                        <div class="form-check col-2 ms-4 ">
+                            <input class="form-check-input" type="radio" id="answerNo" name="barRadio" value="false"
+                                checked>
+                            <label class="form-check-label" for="answerNo">No</label>
+                        </div>
+
+                    </div>
+
+                    <div class="form-control mt-2 d-flex row border-0" formControlName="child">
+                        <label for="answer" class="col-6">Teatro infatil?</label>
+                        <div class="form-check col-2 ms-auto">
+                            <input class="form-check-input" type="radio" id="answerYes" name="childRadio" value="true">
+                            <label class="form-check-label" for="answerYes">Sí</label>
+                        </div>
+                        <div class="form-check col-2 ms-4 ">
+                            <input class="form-check-input" type="radio" id="answerNo" name="childRadio" value="false"
+                                checked>
+                            <label class="form-check-label" for="answerNo">No</label>
+                        </div>
+
+                    </div>
+                </form>
+                    <form class="form-control mt-2 d-flex row border-0" formControlName="accessible">
+                        <label for="answer" class="col-6">Accesible para discapacitados?</label>
+                        <div class="form-check col-2 ms-auto">
+                            <input class="form-check-input" type="radio" id="answerYes" name="accessibleRadio"
+                                value="true">
+                            <label class="form-check-label" for="answerYes">Sí</label>
+                        </div>
+                        <div class="form-check col-2 ms-4 ">
+                            <input class="form-check-input" type="radio" id="answerNo" name="accessibleRadio"
+                                value="false" checked>
+                            <label class="form-check-label" for="answerNo">No</label>
+                        </div> -->

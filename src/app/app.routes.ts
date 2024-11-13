@@ -11,7 +11,7 @@ export const routes: Routes = [
     { path: 'full-calendar', component: FullCalendarComponent },
     { path: 'map', component: MapComponent },
     { path: 'add', component: AddEditComponent },
-    { path: 'edit', component: AddEditComponent },
+    { path: 'edit/:id', component: AddEditComponent },
     {path: '***', redirectTo: '', pathMatch:'full'}
 
 ];

@@ -23,4 +23,9 @@ export class TheatreService {
    deleteTheatre(id: number): Observable<void> {
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
    }
+
+   saveTheatre(theatre: Theatre):Observable<void> {
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, theatre)
+   }
+   
 }

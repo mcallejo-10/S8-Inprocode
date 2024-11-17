@@ -1,3 +1,6 @@
+@if(loading == true) {
+    <app-loading-bar></app-loading-bar>
+} @if(loading == false) {
 <div class="row justify-content-center mt-4">
     <div class="col-lg-6 col-md-6 col-sm-10">
         <div class="card border-primary mb-3" style="max-width: 25rem;">
@@ -93,43 +96,4 @@
 
 </div>
 
-                    <!-- <div class="form-control mt-2 d-flex row border-0" formControlName="bar">
-                        <label for="answer" class="col-6">Tiene bar?</label>
-                        <div class="form-check col-2 ms-auto">
-                            <input class="form-check-input" type="radio" id="answerYes" name="barRadio" value="true">
-                            <label class="form-check-label" for="answerYes">Sí</label>
-                        </div>
-                        <div class="form-check col-2 ms-4 ">
-                            <input class="form-check-input" type="radio" id="answerNo" name="barRadio" value="false"
-                                checked>
-                            <label class="form-check-label" for="answerNo">No</label>
-                        </div>
-
-                    </div>
-
-                    <div class="form-control mt-2 d-flex row border-0" formControlName="child">
-                        <label for="answer" class="col-6">Teatro infatil?</label>
-                        <div class="form-check col-2 ms-auto">
-                            <input class="form-check-input" type="radio" id="answerYes" name="childRadio" value="true">
-                            <label class="form-check-label" for="answerYes">Sí</label>
-                        </div>
-                        <div class="form-check col-2 ms-4 ">
-                            <input class="form-check-input" type="radio" id="answerNo" name="childRadio" value="false"
-                                checked>
-                            <label class="form-check-label" for="answerNo">No</label>
-                        </div>
-
-                    </div>
-                </form>
-                    <form class="form-control mt-2 d-flex row border-0" formControlName="accessible">
-                        <label for="answer" class="col-6">Accesible para discapacitados?</label>
-                        <div class="form-check col-2 ms-auto">
-                            <input class="form-check-input" type="radio" id="answerYes" name="accessibleRadio"
-                                value="true">
-                            <label class="form-check-label" for="answerYes">Sí</label>
-                        </div>
-                        <div class="form-check col-2 ms-4 ">
-                            <input class="form-check-input" type="radio" id="answerNo" name="accessibleRadio"
-                                value="false" checked>
-                            <label class="form-check-label" for="answerNo">No</label>
-                        </div> -->
+}

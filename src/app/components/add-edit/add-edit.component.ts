@@ -5,12 +5,13 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TheatreService } from '../../services/theatre.service';
 import { Theatre } from '../../interfaces/theatre';
 import { ToastrService } from 'ngx-toastr';
+import { LoadingBarComponent } from '../../shared/loading-bar/loading-bar.component';
 
 
 @Component({
   selector: 'app-add-edit',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, FormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, FormsModule, CommonModule, LoadingBarComponent],
   templateUrl: './add-edit.component.html',
   styleUrl: './add-edit.component.scss'
 })

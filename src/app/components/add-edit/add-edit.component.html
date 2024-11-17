@@ -10,6 +10,9 @@
                     <input formControlName="name" type="text" class="form-control" placeholder="Nombre" [ngClass]="{
                         'is-invalid':
                           form.get('name')?.invalid &&
+                          
+                          
+                          
                           form.get('name')?.touched
                       }" />
                     @if(form.get('name')?.invalid &&

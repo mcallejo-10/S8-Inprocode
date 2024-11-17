@@ -37,9 +37,7 @@ export class HomeComponent {
     this.theatreService.deleteTheatre(id).subscribe(() => {
       this.getListTheatres();
       this.loading = false;
-      this.toastr.warning('Producto eliminado con éxito', 'Producto eliminado')
-      
-
+      this.toastr.warning(`Teatro eliminado con éxito`, 'Teatro eliminado')
     })
   }
 }

@@ -1,7 +1,13 @@
 <div class="container mt-4">
-    <button class="btn btn-outline-dark">
-        <i class="bi bi-crosshair2"></i>Mostrar mi geolocalización
-    </button>
+    <div class="row d-flex">
+        <button class="btn btn-outline-dark col-3" (click)="getLocation()">
+            <i class="bi bi-crosshair2"></i>Mostrar mi geolocalización
+        </button>
+        <button class="btn btn-outline-dark col-3 ms-2" (click)="getTheatresLocations()">
+            <i class="bi bi-ticket-perforated"></i>Mostrar teatros guardados
+        </button>
+
+    </div>
     <div id="map">
     </div>
 </div>

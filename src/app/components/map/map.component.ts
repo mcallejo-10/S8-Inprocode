@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import * as L from 'leaflet';
+import { TheatreService } from '../../services/theatre.service';
+import { Theatre } from '../../interfaces/theatre';
 
 @Component({
   selector: 'app-map',
@@ -8,18 +10,60 @@ import * as L from 'leaflet';
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
-export class MapComponent implements OnInit{
+export class MapComponent implements OnInit {
   private map: any;
   private userMarker: L.Marker<any> | undefined;
+  theatreService = inject(TheatreService);
+  listTheatres: Theatre[] = [];
+
 
   ngOnInit(): void {
     this.initMap();
   }
 
-  private initMap(){
-    this.map = L.map('map').setView([41.40217, 2.19326],13);
+  private initMap() {
+    this.map = L.map('map').setView([41.40217, 2.19326], 13);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(this.map);
+  }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const coords: [number, number] = [position.coords.latitude, position.coords.longitude];
+
+        if (this.userMarker) {
+          this.userMarker = L.marker(coords);
+        } else {
+          this.userMarker = L.marker(coords).addTo(this.map)
+            .bindPopup('Estás aquí')
+            .openPopup();
+        }
+
+        this.map.setView(coords, 18)
+      }, () => {
+        alert('No se pudo obtener la geolocalización')
+      }
+      )
+    } else {
+      alert('Geolocalización no soportada por el navegador');
+    }
+  }
+
+  getTheatresLocations() {
+    this.theatreService.getListTheatres().subscribe((data: Theatre[]) => {
+      this.listTheatres = data; 
+      this.listTheatres.forEach(item => {
+        if (item.latitude && item.longitude) {
+          const marker = L.marker([item.latitude, item.longitude])
+          .addTo(this.map)
+          .bindPopup(`<b>${item.name}</b>`);
+        }
+      })     
+    })
   }
 
 }

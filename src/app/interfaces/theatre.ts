@@ -5,4 +5,6 @@ export interface Theatre {
     phone: string;
     seat_count: number;
     accessible: boolean;
+    latitude?: number;
+    longitude?: number;
 }

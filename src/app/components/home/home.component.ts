@@ -28,8 +28,6 @@ export class HomeComponent {
     this.theatreService.getListTheatres().subscribe((data: Theatre[]) => {
       this.listTheatres = data;
       this.loading = false;
-      console.log(data);
-
     })
   }
 

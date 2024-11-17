@@ -27,5 +27,11 @@ export class TheatreService {
    saveTheatre(theatre: Theatre):Observable<void> {
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, theatre)
    }
-   
+   updateTheatre(id: number, theatre: Theatre): Observable<void> {
+    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, theatre)
+   }
+
+   getTheatre(id: number):Observable<Theatre> {
+    return this.http.get<Theatre>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
+  }
 }

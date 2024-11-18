@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { Theatre } from '../interfaces/theatre';
+import { Accessibility } from '../interfaces/charts';
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +37,8 @@ export class TheatreService {
     return this.http.get<Theatre>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
   }
 
-  getAccessibility():Observable<any> {
-    return this.http.get<any>(`${this.myAppUrl}${this.myApiUrl}/accessibility`)
+  getAccessibility():Observable<Accessibility[]> {
+    return this.http.get<Accessibility[]>(`${this.myAppUrl}${this.myApiUrl}/accessibility`)
   }
 
 

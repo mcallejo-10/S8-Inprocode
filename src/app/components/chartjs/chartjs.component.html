@@ -1,5 +1,10 @@
-<div>
-    <canvasjs-chart [options]="chartOptions"></canvasjs-chart>
-</div>
+@if(!chartOptions){
+<app-loading-bar></app-loading-bar>
+} @else {
+    <div>
+        <canvasjs-chart [options]="chartOptions"></canvasjs-chart>
+    </div>
+    
+    <button (click)="getAccessibility()">mostrar</button>
 
-<button (click)="getAccessibility()">mostrar</button>
+}

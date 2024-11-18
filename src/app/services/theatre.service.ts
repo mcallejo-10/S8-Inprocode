@@ -14,6 +14,7 @@ export class TheatreService {
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
     this.myApiUrl = '/api/teatro';
+
    }
 
    getListTheatres():Observable<Theatre[]> {
@@ -34,4 +35,10 @@ export class TheatreService {
    getTheatre(id: number):Observable<Theatre> {
     return this.http.get<Theatre>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
   }
+
+  getAccessibility():Observable<any> {
+    return this.http.get<any>(`${this.myAppUrl}${this.myApiUrl}/accessibility`)
+  }
+
+
 }

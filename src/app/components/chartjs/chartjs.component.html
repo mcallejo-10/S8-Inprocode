@@ -1,10 +1,20 @@
-@if(!chartOptions){
+@if(!seatChartOptions.data[0].dataPoints) {
 <app-loading-bar></app-loading-bar>
 } @else {
-    <div>
-        <canvasjs-chart [options]="chartOptions"></canvasjs-chart>
+    <div class="container container-luid">
+        <div class="d- flex row">
+            <div class="col-6">
+                <canvasjs-chart [options]="chartOptions"></canvasjs-chart>
+            </div>
+        
+            <div class="col-6">
+                <canvasjs-chart [options]="seatChartOptions"></canvasjs-chart>
+            </div>
+        </div>
+
     </div>
     
-    <button (click)="getAccessibility()">mostrar</button>
+    
+
 
 }

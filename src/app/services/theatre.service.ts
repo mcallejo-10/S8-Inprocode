@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { Theatre } from '../interfaces/theatre';
-import { Accessibility } from '../interfaces/charts';
+import { Accessibility, SeatCount } from '../interfaces/charts';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +41,9 @@ export class TheatreService {
     return this.http.get<Accessibility[]>(`${this.myAppUrl}${this.myApiUrl}/accessibility`)
   }
 
+  getSeatCount():Observable<SeatCount[]> {
+    return this.http.get<SeatCount[]>(`${this.myAppUrl}${this.myApiUrl}/seat-count`)
+  }
+  
 
 }

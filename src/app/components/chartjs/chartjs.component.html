@@ -1,4 +1,4 @@
-@if(!seatChartOptions.data[0].dataPoints) {
+@if(!chartOptions || !seatChartOptions) {
 <app-loading-bar></app-loading-bar>
 } @else {
     <div class="container container-luid">
@@ -12,6 +12,7 @@
             </div>
         </div>
 
+        
     </div>
     
     

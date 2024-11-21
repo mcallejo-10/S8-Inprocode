@@ -6,11 +6,10 @@ import { Toast, ToastrService } from 'ngx-toastr';
 import { LoadingBarComponent } from "../../shared/loading-bar/loading-bar.component";
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [RouterLink, LoadingBarComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+    selector: 'app-home',
+    imports: [RouterLink, LoadingBarComponent],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent {
 

@@ -9,11 +9,10 @@ import { LoadingBarComponent } from '../../shared/loading-bar/loading-bar.compon
 
 
 @Component({
-  selector: 'app-add-edit',
-  standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, FormsModule, CommonModule, LoadingBarComponent],
-  templateUrl: './add-edit.component.html',
-  styleUrl: './add-edit.component.scss'
+    selector: 'app-add-edit',
+    imports: [RouterLink, ReactiveFormsModule, FormsModule, CommonModule, LoadingBarComponent],
+    templateUrl: './add-edit.component.html',
+    styleUrl: './add-edit.component.scss'
 })
 
 

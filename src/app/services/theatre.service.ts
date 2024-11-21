@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal,  } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { Theatre } from '../interfaces/theatre';
 import { Accessibility, SeatCount } from '../interfaces/charts';
+import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,17 @@ export class TheatreService {
   private myAppUrl: string;
   private myApiUrl: string;
 
+  //signal
+  // seat = signal(this.getSeatCount() || []);
+  
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
     this.myApiUrl = '/api/teatro';
-
+     
    }
+
+  
+   
 
    getListTheatres():Observable<Theatre[]> {
     return this.http.get<Theatre[]>(`${this.myAppUrl}${this.myApiUrl}`);
@@ -41,9 +48,16 @@ export class TheatreService {
     return this.http.get<Accessibility[]>(`${this.myAppUrl}${this.myApiUrl}/accessibility`)
   }
 
-  getSeatCount():Observable<SeatCount[]> {
+  getSeatCount() {
     return this.http.get<SeatCount[]>(`${this.myAppUrl}${this.myApiUrl}/seat-count`)
   }
+  // // getSeats(){
+  //   const datos = rxResource(async () => {
+  //     const respuesta = await fetch(`${this.myAppUrl}${this.myApiUrl}/seat-count`);
+  //     return respuesta.json();
+  //   });
+  //   datos.value.subscribe((data: any) => console.log(data));
+  // }
   
 
 }

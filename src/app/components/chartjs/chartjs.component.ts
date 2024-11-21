@@ -77,16 +77,20 @@ export class ChartjsComponent {
     console.log("antes de la grafica", seatCount.less_than_100);
     this.seatChartOptions = {
       title: {
-        text: "por catnidad de localidades"
+        text: "Número de localidades"
+      }, axisY: {
+        title: "Número de teatros"
+      },
+      axisX: {
+        title: "Número de butacas"
       },
       animationEnabled: true,
       data: [{
         type: "column",
-        showInLegend: true,
+        showInLegend: false,        
         legendText: "Número de butacas",
-        axisY: {
-          title: "Número de teatros"
-        },
+        
+       
         dataPoints: [
           { x: 1, y: parseInt(seatCount.less_than_100), label: 'Menos de 100' },
           { x: 2, y: parseInt(seatCount.between_100_and_300), label: 'Entre 100 y 299' },

@@ -1,1 +1,37 @@
-<p>full-calendar works!</p>
+<div class='container m-1 demo-app'>
+
+    <div class='demo-app-sidebar'>
+        <div class='demo-app-sidebar-section'>
+            <h2>Instructions</h2>
+            <ul>
+                <li>Select dates and you will be prompted to create a new event</li>
+                <li>Drag, drop, and resize events</li>
+                <li>Click an event to delete it</li>
+            </ul>
+        </div>
+
+        <div class='demo-app-sidebar-section'>
+            <h4>All Events ({{currentEvents().length}})</h4>
+            <ul>
+                @for (event of currentEvents(); track event.title){
+                @if(event){
+                <li>
+                    <b>{{event.startStr}}</b>
+                    <i>{{event.title}}</i>
+                </li>
+                }
+
+                }
+
+            </ul>
+        </div>
+    </div>
+
+    <div class='demo-app-main'>
+        <full-calendar [options]='calendarOptions()'>
+
+
+        </full-calendar>
+    </div>
+
+</div>

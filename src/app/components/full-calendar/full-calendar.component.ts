@@ -51,16 +51,16 @@ export class FullCalendarComponent {
   constructor(private changeDetector: ChangeDetectorRef) {
   }
 
-  handleCalendarToggle() {
-    this.calendarVisible.update((bool) => !bool);
-  }
+//   handleCalendarToggle() {
+//     this.calendarVisible.update((bool) => !bool);
+//   }
 
-  handleWeekendsToggle() {
-    this.calendarOptions.update((options) => ({
-      ...options,
-      weekends: !options.weekends,
-    }));
-  }
+//   handleWeekendsToggle() {
+//     this.calendarOptions.update((options) => ({
+//       ...options,
+//       weekends: !options.weekends,
+//     }));
+//   }
     handleEventClick(clickInfo: EventClickArg) {
         if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
           clickInfo.event.remove();
@@ -73,7 +73,7 @@ export class FullCalendarComponent {
       }
 
       handleDateSelect(selectInfo: DateSelectArg) {
-        const title = prompt('Please enter a new title for your event');
+        const title = prompt('Introduce el título del evento');
         const calendarApi = selectInfo.view.calendar;
     
         calendarApi.unselect(); // clear date selection

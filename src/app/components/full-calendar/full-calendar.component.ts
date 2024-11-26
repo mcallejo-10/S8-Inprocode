@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, signal } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, signal } from '@angular/core';
 import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/core'; // useful for typechecking
 import { FullCalendarModule } from '@fullcalendar/angular'; // useful for typechecking
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -37,7 +37,7 @@ export class FullCalendarComponent {
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
         },
         weekends: true,
-        editable: true,
+        editable: false,
         selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
@@ -51,16 +51,11 @@ export class FullCalendarComponent {
   constructor(private changeDetector: ChangeDetectorRef) {
   }
 
-//   handleCalendarToggle() {
-//     this.calendarVisible.update((bool) => !bool);
-//   }
+  handleCalendarToggle() {
+    this.calendarVisible.update((bool) => !bool);
+  }
 
-//   handleWeekendsToggle() {
-//     this.calendarOptions.update((options) => ({
-//       ...options,
-//       weekends: !options.weekends,
-//     }));
-//   }
+
     handleEventClick(clickInfo: EventClickArg) {
         if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
           clickInfo.event.remove();

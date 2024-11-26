@@ -1,7 +1,7 @@
-<div class='container container-flui m-1 demo-app'>
+<div class='m-1 app'>
 
-    <div class='demo-app-sidebar'>
-        <div class='demo-app-sidebar-section'>
+    <div class='app-sidebar'>
+        <div class='app-sidebar-section'>
             <h2>Instructions</h2>
             <ul>
                 <li>Seleccione las fechas y se le solicitará que cree un nuevo evento</li>
@@ -10,7 +10,7 @@
             </ul>
         </div>
 
-        <div class='demo-app-sidebar-section'>
+        <div class='app-sidebar-section'>
             <h4>All Events ({{currentEvents().length}})</h4>
             <ul>
                 @for (event of currentEvents(); track event.title){
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class='demo-app-main'>
+    <div class='app-main calendar-container'>
         <full-calendar [options]='calendarOptions()'>
 
 

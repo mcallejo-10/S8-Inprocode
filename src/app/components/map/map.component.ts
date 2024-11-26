@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { TheatreService } from '../../services/theatre.service';
 import { Theatre } from '../../interfaces/theatre';
@@ -9,7 +9,7 @@ import { Theatre } from '../../interfaces/theatre';
     templateUrl: './map.component.html',
     styleUrl: './map.component.scss'
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements AfterViewInit{
   private map: any;
   private userMarker: L.Marker<any> | undefined;
   theatreService = inject(TheatreService);
@@ -26,8 +26,11 @@ export class MapComponent implements OnInit {
   });
 
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.initMap();
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 0);
   }
 
   private initMap() {

@@ -1,0 +1,39 @@
+@if(!calendarOptions) {
+    <app-loading-bar></app-loading-bar>
+    } @else {
+
+
+
+        <div class='m-1 app'>
+
+            <div class='app-sidebar'>
+                <div class='app-sidebar-section'>
+                    <h2>Instrucciones:</h2>
+                    <ul>
+                        <li>Seleccionar las fechas y se le solicitará que cree un nuevo evento</li>
+                        <li>Arrastrar, soltar y cambiar el tamaño de los eventos</li>
+                        <li>Hacer clic en un evento para eliminarlo</li>
+                    </ul>
+                </div>
+        
+                <div class='app-sidebar-section'>
+                    <h4>All Events ({{currentEvents().length}})</h4>
+                    <ul>
+                        @for (event of currentEvents(); track event.title){
+                            @if(event){
+                        <li>
+                            <b>{{event.startStr}}</b>
+                            <p>{{event.title}}</p>
+                        </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        
+            <div class='app-main' id="full-calendar">
+                <full-calendar #calendar [options]='calendarOptions()'></full-calendar>
+            </div>
+        
+        </div>
+    }

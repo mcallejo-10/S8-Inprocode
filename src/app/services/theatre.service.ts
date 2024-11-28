@@ -18,12 +18,8 @@ export class TheatreService {
   
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = '/api/teatro';
-     
+    this.myApiUrl = '/api/teatro';     
    }
-
-  
-   
 
    getListTheatres():Observable<Theatre[]> {
     return this.http.get<Theatre[]>(`${this.myAppUrl}${this.myApiUrl}`);

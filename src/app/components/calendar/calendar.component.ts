@@ -7,7 +7,7 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import { EventService } from '../../services/event.service';
-import { apiResponse, calendarEvent } from '../../interfaces/calendarEvent';
+import { calendarEvent } from '../../interfaces/calendarEvent';
 import { LoadingBarComponent } from '../../shared/loading-bar/loading-bar.component';
 import { EventFormComponent } from '../event-form/event-form.component';
 
@@ -26,22 +26,26 @@ export class CalendarComponent implements OnInit {
   storedEvents: calendarEvent[] = [];
 
   
-  @ViewChild(EventFormComponent) eventFornComponent!: EventFormComponent;
+  @ViewChild(EventFormComponent) eventFormComponent!: EventFormComponent;
 
-  constructor(private changeDetector: ChangeDetectorRef, private eventService: EventService) { }
+  eventService = inject(EventService);
 
   events: EventInput[] = [];
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    plugins: [dayGridPlugin, interactionPlugin],
+    plugins: [
+      dayGridPlugin, 
+      interactionPlugin,
+      timeGridPlugin
+    ],
     events: this.events, 
     dateClick: (arg) => this.handleDateClick(arg),
     eventClick: (arg) => this.handleEventClick(arg),
     headerToolbar: {
       start: 'title',           
       center: '',               
-      end: 'today prev,next'
+      end: 'prev,next today dayGridMonth,timeGridWeek,timeGridDay'
     },
     contentHeight: 'auto'
   };
@@ -76,9 +80,9 @@ export class CalendarComponent implements OnInit {
 
     const selectedDate = arg.dateStr;
 
-    // if (this.eventModalComponent) {
-    //   this.eventModalComponent.openModal(null, selectedDate);
-    // }
+    if (this.eventFormComponent) {
+      this.eventFormComponent.openForm(null, selectedDate);
+    }
   }
 
   handleEventClick(arg: EventClickArg): void{
@@ -95,8 +99,8 @@ export class CalendarComponent implements OnInit {
     };
 
     // Abre el modal en modo de edición con los datos del evento
-    // if (this.eventModalComponent) {
-    //   this.eventModalComponent.openModal(eventData, null);
+    // if (this.eventFormComponent) {
+    //   this.eventFormComponent.openModal(eventData, null);
     // }
   }
 

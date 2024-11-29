@@ -9,13 +9,14 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import { EventService } from '../../services/event.service';
 import { apiResponse, calendarEvent } from '../../interfaces/calendarEvent';
 import { LoadingBarComponent } from '../../shared/loading-bar/loading-bar.component';
+import { EventFormComponent } from '../event-form/event-form.component';
 
 
 
 
 @Component({
   selector: 'app-full-calendar',
-  imports: [LoadingBarComponent , FullCalendarModule],
+  imports: [LoadingBarComponent , FullCalendarModule, EventFormComponent],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
@@ -25,7 +26,7 @@ export class CalendarComponent implements OnInit {
   storedEvents: calendarEvent[] = [];
 
   
-  @ViewChild('calendar', { static: false }) calendarComponent!: FullCalendarComponent;
+  @ViewChild(EventFormComponent) eventFornComponent!: EventFormComponent;
 
   constructor(private changeDetector: ChangeDetectorRef, private eventService: EventService) { }
 

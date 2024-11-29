@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { calendarEvent } from '../interfaces/calendarEvent';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,10 +12,15 @@ export class EventService {
   private myAppUrl: string;
   private myApiUrl: string;
   eventsList= signal<calendarEvent[]>([]);
-  
+  selectedEvent = signal<calendarEvent | null>(null);
+
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
     this.myApiUrl = '/api/teatro';     
+   }
+
+   updateSelectedEvent(event: calendarEvent | null) {
+    this.selectedEvent.set(event);
    }
 
    getAllEvents():Observable<calendarEvent[]> {

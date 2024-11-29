@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, inject, signal, ViewChild, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CalendarOptions, DateSelectArg, EventApi, EventClickArg, EventInput, EventSourceInput } from '@fullcalendar/core';
 import { FullCalendarModule, FullCalendarComponent } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -26,11 +27,13 @@ export class CalendarComponent implements OnInit {
   storedEvents: calendarEvent[] = [];
 
   
-  @ViewChild(EventFormComponent) eventFormComponent!: EventFormComponent;
+  // @ViewChild(EventFormComponent) eventFormComponent!: EventFormComponent;
 
   eventService = inject(EventService);
 
   events: EventInput[] = [];
+
+  constructor(private router: Router) {}
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -40,7 +43,7 @@ export class CalendarComponent implements OnInit {
       timeGridPlugin
     ],
     events: this.events, 
-    dateClick: (arg) => this.handleDateClick(arg),
+    dateClick: (arg: DateClickArg) => this.handleDateClick(arg),
     eventClick: (arg) => this.handleEventClick(arg),
     headerToolbar: {
       start: 'title',           
@@ -49,6 +52,8 @@ export class CalendarComponent implements OnInit {
     },
     contentHeight: 'auto'
   };
+
+
 
   ngOnInit(): void {
     this.loadEvents();
@@ -74,35 +79,41 @@ export class CalendarComponent implements OnInit {
       }
     });
   }
-  
-
-  handleDateClick(arg: DateClickArg): void {
-
-    const selectedDate = arg.dateStr;
-
-    if (this.eventFormComponent) {
-      this.eventFormComponent.openForm(null, selectedDate);
-    }
+  handleDateClick(arg: DateClickArg) {
+    const date = arg.date; // Fecha seleccionada
+    this.router.navigate(['/addEvent', date]);
   }
-
-  handleEventClick(arg: EventClickArg): void{
-    // Construimos el objeto calendarEvent con los datos del evento
-    const clickedEvent = arg.event;
-
-    const eventData: calendarEvent = {
-      id: parseInt(clickedEvent.id, 10),
-      title: clickedEvent.title,
-      description: clickedEvent.extendedProps['description'] || '',
-      startAt: clickedEvent.start?.toISOString() || '',
-      endAt: clickedEvent.end?.toISOString() || '',
-      color: clickedEvent.backgroundColor || '#FF5733'
-    };
-
-    // Abre el modal en modo de edición con los datos del evento
-    // if (this.eventFormComponent) {
-    //   this.eventFormComponent.openModal(eventData, null);
-    // }
+  handleEventClick(clickInfo: EventClickArg) {
+    const eventId = clickInfo.event.id; // ID del evento
+    this.router.navigate(['/editEvent', eventId]);
   }
+  // handleDateClick(arg: DateClickArg): void {
+
+  //   const selectedDate = arg.dateStr;
+
+  //   if (this.eventFormComponent) {
+  //     this.eventFormComponent.openForm(null, selectedDate);
+  //   }
+  // }
+
+  // handleEventClick(arg: EventClickArg): void{
+  //   // Construimos el objeto calendarEvent con los datos del evento
+  //   const clickedEvent = arg.event;
+
+  //   const eventData: calendarEvent = {
+  //     id: parseInt(clickedEvent.id, 10),
+  //     title: clickedEvent.title,
+  //     description: clickedEvent.extendedProps['description'] || '',
+  //     startAt: clickedEvent.start?.toISOString() || '',
+  //     endAt: clickedEvent.end?.toISOString() || '',
+  //     color: clickedEvent.backgroundColor || '#FF5733'
+  //   };
+
+  //   // Abre el modal en modo de edición con los datos del evento
+  //   // if (this.eventFormComponent) {
+  //   //   this.eventFormComponent.openModal(eventData, null);
+  //   // }
+  // }
 
   onEventUpdated(eCalendar: calendarEvent) {
     this.loadEvents(); 

@@ -4,6 +4,7 @@ import { ChartjsComponent } from './components/chartjs/chartjs.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { MapComponent } from './components/map/map.component';
 import { AddEditComponent } from './components/add-edit/add-edit.component';
+import { EventFormComponent } from './components/event-form/event-form.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -12,6 +13,8 @@ export const routes: Routes = [
     { path: 'map', component: MapComponent },
     { path: 'add', component: AddEditComponent },
     { path: 'edit/:id', component: AddEditComponent },
+    { path: 'addEvent', component: EventFormComponent },
+    { path: 'editEvent/:id', component: EventFormComponent },
     {path: '***', redirectTo: '', pathMatch:'full'}
 
 ];

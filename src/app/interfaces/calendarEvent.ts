@@ -1,8 +1,14 @@
 export interface calendarEvent {
-    id?: string;
+    id: number;
     title: string;
     description: string;
     startAt: string | Date;
-    endAt: string | Date;
-    allDay: boolean;    
+    endAt: string | Date;    
+    color: string | null   
+}
+
+export interface apiResponse {
+    error: boolean;
+    status: number;
+    body: calendarEvent[]
 }

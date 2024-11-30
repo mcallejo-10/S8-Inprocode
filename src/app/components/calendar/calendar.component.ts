@@ -10,26 +10,19 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import { EventService } from '../../services/event.service';
 import { calendarEvent } from '../../interfaces/calendarEvent';
 import { LoadingBarComponent } from '../../shared/loading-bar/loading-bar.component';
-import { EventFormComponent } from '../event-form/event-form.component';
 
 
 
 
 @Component({
   selector: 'app-full-calendar',
-  imports: [LoadingBarComponent , FullCalendarModule, EventFormComponent],
+  imports: [LoadingBarComponent , FullCalendarModule],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
 export class CalendarComponent implements OnInit {
-  calendarVisible = signal(true);
-  currentEvents = signal<EventApi[]>([]);
-  storedEvents: calendarEvent[] = [];
+   eventService = inject(EventService);
 
-  
-  // @ViewChild(EventFormComponent) eventFormComponent!: EventFormComponent;
-
-  eventService = inject(EventService);
 
   events: EventInput[] = [];
 
@@ -62,14 +55,17 @@ export class CalendarComponent implements OnInit {
   loadEvents(): void {
     this.eventService.getAllEvents().subscribe({
       next: (data: calendarEvent[]) => {
+        console.log('Events loaded:', data);
+        
         this.events = data.map(event => ({
-          id: event.id.toString(),
+          id: event.id?.toString(),
           title: event.title, 
           start: this.eventService.formatDate(new Date(event.startAt)),
           end: event.endAt ? this.eventService.formatDate(new Date(event.endAt)) : undefined,  
           description: event.description, 
           color: event.color || undefined
         }));
+        this.calendarOptions.events = this.events; 
       },
       error: (error: any) => {
         console.error('Error loading events:', error);
@@ -79,81 +75,18 @@ export class CalendarComponent implements OnInit {
       }
     });
   }
+
+
   handleDateClick(arg: DateClickArg) {
     const date = arg.date; // Fecha seleccionada
-    this.router.navigate(['/addEvent', date]);
+    console.log('date:', date);
+    
+    this.eventService.selectedDate()?.set(date);   
+    this.router.navigate(['/addEvent']);
   }
+
   handleEventClick(clickInfo: EventClickArg) {
-    const eventId = clickInfo.event.id; // ID del evento
+    const eventId = clickInfo.event.id;
     this.router.navigate(['/editEvent', eventId]);
   }
-  // handleDateClick(arg: DateClickArg): void {
-
-  //   const selectedDate = arg.dateStr;
-
-  //   if (this.eventFormComponent) {
-  //     this.eventFormComponent.openForm(null, selectedDate);
-  //   }
-  // }
-
-  // handleEventClick(arg: EventClickArg): void{
-  //   // Construimos el objeto calendarEvent con los datos del evento
-  //   const clickedEvent = arg.event;
-
-  //   const eventData: calendarEvent = {
-  //     id: parseInt(clickedEvent.id, 10),
-  //     title: clickedEvent.title,
-  //     description: clickedEvent.extendedProps['description'] || '',
-  //     startAt: clickedEvent.start?.toISOString() || '',
-  //     endAt: clickedEvent.end?.toISOString() || '',
-  //     color: clickedEvent.backgroundColor || '#FF5733'
-  //   };
-
-  //   // Abre el modal en modo de edición con los datos del evento
-  //   // if (this.eventFormComponent) {
-  //   //   this.eventFormComponent.openModal(eventData, null);
-  //   // }
-  // }
-
-  onEventUpdated(eCalendar: calendarEvent) {
-    this.loadEvents(); 
-  }
-
-
-
-
 }
-
-
-//   handleCalendarToggle() {
-//     this.calendarVisible.update((bool) => !bool);
-//   }
-
-
-//   handleEventClick(clickInfo: EventClickArg) {
-//     if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-//       clickInfo.event.remove();
-//     }
-//   }
-
-//   handleEvents(events: EventApi[]) {
-//     this.currentEvents.set(events);
-//     this.changeDetector.detectChanges(); // workaround for pressionChangedAfterItHasBeenCheckedError
-//   }
-
-//   handleDateSelect(selectInfo: DateSelectArg) {
-//     const title = prompt('Introduce el título del evento');
-//     const calendarApi = selectInfo.view.calendar;
-
-//     calendarApi.unselect(); // clear date selection
-
-//     if (title) {
-//       calendarApi.addEvent({
-//         title,
-//         start: selectInfo.startStr,
-//         end: selectInfo.endStr,
-//         allDay: selectInfo.allDay
-//       });
-//     }
-//   }
-// }

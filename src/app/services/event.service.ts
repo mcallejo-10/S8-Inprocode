@@ -13,11 +13,12 @@ export class EventService {
   private myApiUrl: string;
   eventsList= signal<calendarEvent[]>([]);
   selectedEvent = signal<calendarEvent | null>(null);
+  selectedDate = signal<any | null>(null);
 
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = '/api/teatro';     
-   }
+    this.myApiUrl = '/api/teatro';    
+    }
 
    updateSelectedEvent(event: calendarEvent | null) {
     this.selectedEvent.set(event);
@@ -31,15 +32,15 @@ export class EventService {
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/event/${id}`)
    }
 
-   saveEvent(event: Event):Observable<void> {
+   addEvent(event: calendarEvent):Observable<void> {
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}/event`, event)
    }
-   updateEvent(id: number, event: Event): Observable<void> {
+   updateEvent(id: number, event: calendarEvent): Observable<void> {
     return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/event/${id}`, event)
    }
 
-   getEvent(id: number):Observable<Event> {
-    return this.http.get<Event>(`${this.myAppUrl}${this.myApiUrl}/event/${id}`)
+   getEvent(id: number):Observable<calendarEvent> {
+    return this.http.get<calendarEvent>(`${this.myAppUrl}${this.myApiUrl}/event/${id}`)
   }
 
   formatDate(date: Date): string {

@@ -5,82 +5,193 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* Paleta de colores */
-$primary-color: #2f4f4f; /* Gris oscuro (principal) */
-$secondary-color: #46b49c; /* Azul acero */
-$highlight-color: #8fbc8f; /* Verde claro */
-$background-color: #f0f8ff; /* Fondo suave */
+$primary-color: #2f4f4f;
+/* Gris oscuro (principal) */
+$secondary-color: #398b79;
+/* Azul acero */
+$highlight-color: #9dfdcd;
+/* Verde claro */
+$background-color: #f0f8ff;
+/* Fondo suave */
 
 /* Estilos para FullCalendar */
 .fc-daygrid-day-number {
-    color: $primary-color; /* Cambiar el color de los números de los días */
-    font-weight: bold;
-    text-decoration: none;
+  color: $primary-color;
+  /* Cambiar el color de los números de los días */
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+  /* Tamaño base */
+}
+
+@media (max-width: 768px) {
+  .fc-daygrid-day-number {
+    font-size: 0.9rem;
+    /* Reducir ligeramente el tamaño */
+  }
+}
+
+@media (max-width: 480px) {
+  .fc-daygrid-day-number {
+    font-size: 0.7rem;
+    /* Reducir aún más para pantallas pequeñas */
+  }
+}
+
+/* Texto de los eventos */
+
+/* Texto dentro de las celdas de los días */
+.fc-col-header-cell-cushion {
+  color: $primary-color;
+  text-decoration: underline;
+  font-size: 1rem;
+}
+@media screen and (max-width: 768px) {
+  .fc-col-header-cell-cushion {
+    font-size: 0.9rem;
   }
   
-  /* Texto dentro de las celdas de los días */
+}
+
+@media screen and (max-width: 480px) {
   .fc-col-header-cell-cushion {
-    color: $primary-color; /* Texto general de los días */
-    text-decoration: underline;
+    font-size: 0.7rem;
   }
+}
 
 /* Estilos de los botones del calendario */
 .fc-toolbar .fc-button {
-    width: auto;
-  background-color: $primary-color; /* Fondo de los botones */
-  color: white; /* Texto en blanco */
+  width: auto;
+  background-color: $primary-color;
+  /* Fondo de los botones */
+  color: white;
+  /* Texto en blanco */
   border: none;
   transition: background-color 0.3s ease;
   border-radius: 0;
-  padding: 0.4rem;}
+  padding: 0.4rem;
+}
 
 /* Botón al pasar el mouse */
 .fc-toolbar .fc-button:hover {
-  background-color: lighten($secondary-color, 10%); /* Azul más claro */
+  background-color: lighten($secondary-color, 10%);
+  /* Azul más claro */
 }
 
 /* Botón activo */
 .fc-toolbar .fc-button.fc-button-active {
-  background-color: $primary-color; /* Fondo principal */
+  background-color: $primary-color;
+  /* Fondo principal */
   color: white;
 }
 
+/* Botones del header */
+.fc-header-toolbar .fc-toolbar-chunk button {
+  font-size: 1rem;
+  /* Tamaño base */
+  padding: 0.5rem 1rem;
+  /* Espaciado base */
+}
+
+@media (max-width: 768px) {
+  .fc-header-toolbar .fc-toolbar-chunk button {
+    font-size: 0.8rem;
+    /* Reducir tamaño de letra */
+    padding: 0.3rem 0.8rem;
+    /* Reducir espaciado */
+  }
+}
+
+@media (max-width: 480px) {
+  .fc-header-toolbar .fc-toolbar-chunk button {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+/* Contenedor de los botones */
+.fc-header-toolbar {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los botones se ajusten */
+  justify-content: space-between;
+}
+
+/* Alineación de botones en pantallas pequeñas */
+@media (max-width: 768px) {
+  .fc-header-toolbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fc-toolbar-chunk {
+    margin: 0.5rem 0; /* Espaciado entre grupos */
+  }
+}
+
+
 /* Cambiar el color del texto general del calendario */
 .fc {
-  color: $primary-color; 
+  color: $primary-color;
 }
 
 /* Fondo de los días del calendario */
 .fc-daygrid-day {
-  background-color: $background-color; /* Fondo suave */
-  color: $primary-color; /* Texto gris oscuro */
+  background-color: $background-color;
+  /* Fondo suave */
+  color: $primary-color;
+  /* Texto gris oscuro */
 }
 
 /* Día actual resaltado */
 .fc-day-today {
-  background-color: $highlight-color; /* Verde claro */
+  background-color: $highlight-color;
+  /* Verde claro */
   color: white;
   font-weight: bold;
 }
 
 /* Colores de los eventos */
 .fc-event {
-  background-color: $secondary-color; /* Azul acero */
-  border-color: $primary-color; /* Borde gris oscuro */
-  color: white;
+  background-color: $background-color;
+  /* Azul acero */
+  border-color: $primary-color;
+  /* Borde gris oscuro */
+  color: $secondary-color;
+  font-family: Montserrat, monospace;
+  font-size: small;
+  font-size: 0.9rem;
+  /* Tamaño base */
 }
+
+@media (max-width: 768px) {
+  .fc-event {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .fc-event {
+    font-size: 0.7rem;
+  }
+}
+
 
 /* Evento al pasar el mouse */
 .fc-event:hover {
-  background-color: darken($secondary-color, 10%); /* Azul más oscuro */
+  background-color: darken($highlight-color, 10%);
+  /* Azul más oscuro */
   cursor: pointer;
 }
 
 
+
+
+
+
 body {
-    font-family: barlow, Montserrat, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+  font-family: barlow, Montserrat, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .btn {
-    border-radius: 0;
+  border-radius: 0;
 }
-

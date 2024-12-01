@@ -4,6 +4,78 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* Paleta de colores */
+$primary-color: #2f4f4f; /* Gris oscuro (principal) */
+$secondary-color: #46b49c; /* Azul acero */
+$highlight-color: #8fbc8f; /* Verde claro */
+$background-color: #f0f8ff; /* Fondo suave */
+
+/* Estilos para FullCalendar */
+.fc-daygrid-day-number {
+    color: $primary-color; /* Cambiar el color de los números de los días */
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  /* Texto dentro de las celdas de los días */
+  .fc-col-header-cell-cushion {
+    color: $primary-color; /* Texto general de los días */
+    text-decoration: underline;
+  }
+
+/* Estilos de los botones del calendario */
+.fc-toolbar .fc-button {
+    width: auto;
+  background-color: $primary-color; /* Fondo de los botones */
+  color: white; /* Texto en blanco */
+  border: none;
+  transition: background-color 0.3s ease;
+  border-radius: 0;
+  padding: 0.4rem;}
+
+/* Botón al pasar el mouse */
+.fc-toolbar .fc-button:hover {
+  background-color: lighten($secondary-color, 10%); /* Azul más claro */
+}
+
+/* Botón activo */
+.fc-toolbar .fc-button.fc-button-active {
+  background-color: $primary-color; /* Fondo principal */
+  color: white;
+}
+
+/* Cambiar el color del texto general del calendario */
+.fc {
+  color: $primary-color; 
+}
+
+/* Fondo de los días del calendario */
+.fc-daygrid-day {
+  background-color: $background-color; /* Fondo suave */
+  color: $primary-color; /* Texto gris oscuro */
+}
+
+/* Día actual resaltado */
+.fc-day-today {
+  background-color: $highlight-color; /* Verde claro */
+  color: white;
+  font-weight: bold;
+}
+
+/* Colores de los eventos */
+.fc-event {
+  background-color: $secondary-color; /* Azul acero */
+  border-color: $primary-color; /* Borde gris oscuro */
+  color: white;
+}
+
+/* Evento al pasar el mouse */
+.fc-event:hover {
+  background-color: darken($secondary-color, 10%); /* Azul más oscuro */
+  cursor: pointer;
+}
+
+
 body {
     font-family: barlow, Montserrat, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
 }

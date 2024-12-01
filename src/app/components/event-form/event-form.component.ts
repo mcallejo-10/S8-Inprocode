@@ -60,7 +60,6 @@ export class EventFormComponent {
   addEvent() {
     if (this.form.invalid) {
       console.log(this.form.value);
-
       this.errorMessage = 'Formulario incorrecto, revise los campos'
     } else {
       this.errorMessage = '';
@@ -83,7 +82,7 @@ export class EventFormComponent {
             this.errorMessage = 'Debe rellenar todos los campos requeridos';
             console.error('Error loading events:', error);
           }
-        });
+        }); } else {
         this.eventService.addEvent(currentEvent).subscribe({
           next: () => {
             this.toastr.success('Evento añadido con éxito', 'Evento añadido');

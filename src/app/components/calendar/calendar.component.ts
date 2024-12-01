@@ -7,6 +7,8 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import 'bootstrap-icons/font/bootstrap-icons.css'; // needs additional webpack config!
+
 import { EventService } from '../../services/event.service';
 import { calendarEvent } from '../../interfaces/calendarEvent';
 import { LoadingBarComponent } from '../../shared/loading-bar/loading-bar.component';
@@ -33,8 +35,9 @@ export class CalendarComponent implements OnInit {
     plugins: [
       dayGridPlugin, 
       interactionPlugin,
-      timeGridPlugin
+      timeGridPlugin,
     ],
+    
     events: this.events, 
     dateClick: (arg: DateClickArg) => this.handleDateClick(arg),
     eventClick: (arg) => this.handleEventClick(arg),
@@ -43,7 +46,9 @@ export class CalendarComponent implements OnInit {
       center: '',               
       end: 'prev,next today dayGridMonth,timeGridWeek,timeGridDay'
     },
-    contentHeight: 'auto'
+    height: 'auto', 
+    contentHeight: 'auto',
+    aspectRatio: 0.7,
   };
 
 

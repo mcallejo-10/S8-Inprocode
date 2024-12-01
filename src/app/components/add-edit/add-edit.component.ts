@@ -68,7 +68,7 @@ export class AddEditComponent {
         theatre.id = this.id;
         this.theatreService.updateTheatre(this.id, theatre).subscribe(() => {
           this.toastr.info(`${theatre.name} se ha actualizado con éxito`, 'Teatro actualizado');
-          this.router.navigate(['/'])
+          this.router.navigate(['/crud'])
 
         })
 
@@ -76,7 +76,7 @@ export class AddEditComponent {
         this.theatreService.saveTheatre(theatre).subscribe(() => {
           console.log(theatre);
           this.toastr.success(`${theatre.name} fue registrado con éxito`, 'Teatro registrado')
-          this.router.navigate(['/'])
+          this.router.navigate(['/crud'])
         })
       }
       this.loading = false;

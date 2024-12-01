@@ -74,7 +74,7 @@ $background-color: #f0f8ff;
 
 /* Botón al pasar el mouse */
 .fc-toolbar .fc-button:hover {
-  background-color: lighten($secondary-color, 10%);
+  background-color: $secondary-color, 10%;
   /* Azul más claro */
 }
 
@@ -178,8 +178,8 @@ $background-color: #f0f8ff;
 
 /* Evento al pasar el mouse */
 .fc-event:hover {
-  background-color: darken($highlight-color, 10%);
-  /* Azul más oscuro */
+  background-color: $highlight-color, 10%;
+
   cursor: pointer;
 }
 
@@ -194,4 +194,21 @@ body {
 
 .btn {
   border-radius: 0;
+}
+
+.progress-bar {
+  background-color: #2f4f4f !important;
+  width: 100%;
+  border-radius: 0;
+  margin:0;
+}
+.progress {
+  background-color: #d3d3d3 !important;  
+  width: 100%;
+  border-radius: 0;
+  margin:0;
+}
+
+.progress-bar {
+  animation: growBar 2s ease-in-out infinite;
 }

@@ -1,0 +1,61 @@
+@if(loading == true) {
+    <app-loading-bar></app-loading-bar>
+} @if(loading == false) {
+    
+    <div class="container mt-3">
+        <div class="title d-flex row">
+           
+            <h4>Listado de teatros:</h4>
+        </div>
+    
+    
+        <div class="container mt-2">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">TEATRO</th>
+                        <th scope="col">DIRECCIÓN</th>
+                        <th scope="col">TELÉFONO</th>
+                        <th scope="col">AFORO</th>
+                        <th scope="col">ACCESIBLE</th>
+                        <th scope="col">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (theatre of listTheatres; track theatre.id) {
+                    <tr>
+                        <th scope="row">{{theatre.id}}</th>
+                        <td>{{theatre.name}}</td>
+                        <td>{{theatre.address}}</td>
+                        <td>{{theatre.phone}}</td>
+                        <td>{{theatre.seat_count}}</td>
+                        <td>
+                            @if(theatre.accessible == true) {
+                            SI
+                            } @else {
+                            NO
+                            }
+                        </td>
+                       
+    
+                        <td>
+    
+                            <button type="button" class="btn btn-sm btn-outline-warning"
+                                [routerLink]="['edit', theatre.id]">Edit</button>
+    
+                            <button type="button" class="btn btn-sm btn-outline-danger mx-2"
+                                (click)="deleteTheatre(theatre.id!)">Delete</button>
+    
+                        </td>
+                    </tr>
+                    }
+    
+    
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-primary" routerLink="/add">Agregar</button>
+    
+        </div>
+        </div>
+}

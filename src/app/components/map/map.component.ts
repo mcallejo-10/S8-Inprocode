@@ -14,6 +14,7 @@ export class MapComponent implements AfterViewInit{
   private userMarker: L.Marker<any> | undefined;
   theatreService = inject(TheatreService);
   listTheatres: Theatre[] = [];
+  filterTheatreList: Theatre[] = [];
   markers: L.Marker[] = []; 
 
   customIcon = L.icon({
@@ -75,11 +76,18 @@ export class MapComponent implements AfterViewInit{
       this.addMarkers();
     })
   }
-  
+
+  filterTheatres() {
+    this.cleanMap();
+    this.theatreService.getListTheatres().subscribe((data: Theatre[]) => {
+      this.filterTheatreList = data.filter(item => item.accessible === true);
+      this.addMarkers();
+    })
+  }
+
 
   addMarkers() {  
     const bounds = L.latLngBounds([]); 
-
     this.listTheatres.forEach(item => {
       if (item.latitude && item.longitude) {
         const marker = L.marker([item.latitude, item.longitude], { icon: this.customIcon })
@@ -90,7 +98,7 @@ export class MapComponent implements AfterViewInit{
       }
     })
     if (bounds.isValid()) {
-      this.map.fitBounds(bounds, { padding: [50, 50] }); 
+      this.map.fitBounds(bounds, { padding: [20, 20] }); 
     }
   }
 

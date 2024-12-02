@@ -50,10 +50,10 @@ export class EventFormComponent {
       this.action = 'Editar '
       this.getEvent(this.id)
     } else {
-      console.log('selectedDate', this.eventService.selectedDate()?.value);
+      console.log('selectedDate', this.eventService.selectedDate());
       
       this.form.patchValue({
-        start: this.eventService.selectedDate()
+        start: this.eventService.formatDate(new Date(this.eventService.selectedDate()))
       })
     }
   }
@@ -66,7 +66,7 @@ export class EventFormComponent {
       const currentEvent: calendarEvent = {
         title: this.form.value.title,
         description: this.form.value.description,
-        startAt: this.form.value.start,
+        startAt: this.form.value.start?.toISOString().split("T")[0] || '',
         endAt: this.form.value.end,
         color: this.form.value.color
       }

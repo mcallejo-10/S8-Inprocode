@@ -86,7 +86,7 @@ export class CalendarComponent implements OnInit {
     const date = arg.date; // Fecha seleccionada
     console.log('date:', date);
     
-    this.eventService.selectedDate()?.set(date);   
+    this.eventService.setSelectedDate(date);  
     this.router.navigate(['/addEvent']);
   }
 

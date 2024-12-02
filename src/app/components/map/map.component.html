@@ -19,14 +19,14 @@
         <div class="card-body">
             <div class="form-check">
 
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (change)="filterTheatres()">
                 <label class="form-check-label" for="flexCheckDefault">
                     Teatros accesisbles
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                <label class="form-check-label" for="flexCheckChecked">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" (change)="filterTheatres()">
+                <label class="form-check-label" for="flexCheckChecked" >
                     Teatros No accesibles
                 </label>
             </div>

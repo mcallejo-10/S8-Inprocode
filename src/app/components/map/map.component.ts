@@ -69,24 +69,29 @@ export class MapComponent implements AfterViewInit{
   }
 
   getTheatresLocations() {
-
     this.cleanMap();
-    const bounds = L.latLngBounds([]); 
     this.theatreService.getListTheatres().subscribe((data: Theatre[]) => {
       this.listTheatres = data;
-      this.listTheatres.forEach(item => {
-        if (item.latitude && item.longitude) {
-          const marker = L.marker([item.latitude, item.longitude], { icon: this.customIcon })
-            .addTo(this.map)
-            .bindPopup(`<b>${item.name}</b>`);
-          this.markers.push(marker);
-          bounds.extend([item.latitude, item.longitude]); 
-        }
-      })
-      if (bounds.isValid()) {
-        this.map.fitBounds(bounds, { padding: [50, 50] }); 
+      this.addMarkers();
+    })
+  }
+  
+
+  addMarkers() {  
+    const bounds = L.latLngBounds([]); 
+
+    this.listTheatres.forEach(item => {
+      if (item.latitude && item.longitude) {
+        const marker = L.marker([item.latitude, item.longitude], { icon: this.customIcon })
+          .addTo(this.map)
+          .bindPopup(`<b>${item.name}</b>`);
+        this.markers.push(marker);
+        bounds.extend([item.latitude, item.longitude]); 
       }
     })
+    if (bounds.isValid()) {
+      this.map.fitBounds(bounds, { padding: [50, 50] }); 
+    }
   }
 
   cleanMap() {

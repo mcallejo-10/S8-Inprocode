@@ -2,7 +2,8 @@
 
 #map {
     height: 75vh;
-    margin-top: 0.5rem;
+    width: 100%;
+    margin: 0.5rem;
 }
 
 .bi {
@@ -10,4 +11,8 @@
     height: 70px;
     width: 70px;
     margin-right: 10px;
+}
+
+.card {
+    width: 40%;
 }

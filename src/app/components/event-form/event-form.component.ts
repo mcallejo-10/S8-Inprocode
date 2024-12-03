@@ -6,7 +6,7 @@ import { EventService } from '../../services/event.service';
 import { ToastrService } from 'ngx-toastr';
 import { calendarEvent } from '../../interfaces/calendarEvent';
 import { LoadingBarComponent } from '../../shared/loading-bar/loading-bar.component';
-import { dateSelectionJoinTransformer } from '@fullcalendar/core/internal';
+
 
 @Component({
   selector: 'app-event-form',
@@ -17,13 +17,13 @@ import { dateSelectionJoinTransformer } from '@fullcalendar/core/internal';
 
 
 export class EventFormComponent {
-  // eventService = inject(EventService);
-  errorMessage: string = '';
+
   form: FormGroup;
   loading: boolean = false;
   id: number;
-  date: any;  
+  date: any;
   action: string = 'Agregar ';
+  errorMessage: string = '';
 
 
   constructor(private fb: FormBuilder,
@@ -40,8 +40,6 @@ export class EventFormComponent {
       color: new FormControl('#3e6565', Validators.required)
     })
     this.id = Number(aRouter.snapshot.paramMap.get('id'))
-    console.log('id', this.id);
-
   }
 
 
@@ -50,8 +48,6 @@ export class EventFormComponent {
       this.action = 'Editar '
       this.getEvent(this.id)
     } else {
-      console.log('selectedDate', this.eventService.selectedDate());
-      
       this.form.patchValue({
         start: this.eventService.formatDate(new Date(this.eventService.selectedDate()))
       })
@@ -59,14 +55,13 @@ export class EventFormComponent {
   }
   addEvent() {
     if (this.form.invalid) {
-      console.log(this.form.value);
       this.errorMessage = 'Formulario incorrecto, revise los campos'
     } else {
       this.errorMessage = '';
       const currentEvent: calendarEvent = {
         title: this.form.value.title,
         description: this.form.value.description,
-        startAt: this.form.value.start?.toISOString().split("T")[0] || '',
+        startAt: this.form.value.start,
         endAt: this.form.value.end,
         color: this.form.value.color
       }
@@ -82,7 +77,8 @@ export class EventFormComponent {
             this.errorMessage = 'Debe rellenar todos los campos requeridos';
             console.error('Error loading events:', error);
           }
-        }); } else {
+        });
+      } else {
         this.eventService.addEvent(currentEvent).subscribe({
           next: () => {
             this.toastr.success('Evento añadido con éxito', 'Evento añadido');
@@ -111,9 +107,7 @@ export class EventFormComponent {
           color: data.color
         })
         if (id == 0) {
-          console.log('selectedDate', this.eventService.selectedDate()?.value);
           this.form.patchValue({
-            
             start: this.eventService.selectedDate()?.value,
           })
         }

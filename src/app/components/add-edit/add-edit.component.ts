@@ -9,15 +9,14 @@ import { LoadingBarComponent } from '../../shared/loading-bar/loading-bar.compon
 
 
 @Component({
-    selector: 'app-add-edit',
-    imports: [RouterLink, ReactiveFormsModule, FormsModule, CommonModule, LoadingBarComponent],
-    templateUrl: './add-edit.component.html',
-    styleUrl: './add-edit.component.scss'
+  selector: 'app-add-edit',
+  imports: [RouterLink, ReactiveFormsModule, FormsModule, CommonModule, LoadingBarComponent],
+  templateUrl: './add-edit.component.html',
+  styleUrl: './add-edit.component.scss'
 })
 
 
 export class AddEditComponent {
-
   errorMessage: string = '';
   form: FormGroup;
   loading: boolean = false;
@@ -74,7 +73,6 @@ export class AddEditComponent {
 
       } else {
         this.theatreService.saveTheatre(theatre).subscribe(() => {
-          console.log(theatre);
           this.toastr.success(`${theatre.name} fue registrado con éxito`, 'Teatro registrado')
           this.router.navigate(['/crud'])
         })

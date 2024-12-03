@@ -24,12 +24,12 @@ export class MapComponent implements AfterViewInit{
   
 
   customIcon = L.icon({
-    iconUrl: 'assets/leaflet/marker-icon.png', // Ruta a tu icono
-    shadowUrl: 'assets/leaflet/marker-shadow.png', // Ruta a la sombra
-    iconSize: [25, 41], // Tamaño del icono
-    iconAnchor: [12, 41], // Punto de anclaje
-    popupAnchor: [1, -34], // Punto de anclaje del popup
-    shadowSize: [41, 41], // Tamaño de la sombra
+    iconUrl: 'assets/leaflet/marker-icon.png', 
+    shadowUrl: 'assets/leaflet/marker-shadow.png', 
+    iconSize: [25, 41], 
+    iconAnchor: [12, 41], 
+    popupAnchor: [1, -34], 
+    shadowSize: [41, 41],
   });
 
 

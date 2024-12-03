@@ -4,11 +4,8 @@ import { CalendarOptions, DateSelectArg, EventApi, EventClickArg, EventInput, Ev
 import { FullCalendarModule, FullCalendarComponent } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
-import bootstrap5Plugin from '@fullcalendar/bootstrap5';
-import 'bootstrap-icons/font/bootstrap-icons.css'; // needs additional webpack config!
-
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import { EventService } from '../../services/event.service';
 import { calendarEvent } from '../../interfaces/calendarEvent';
 import { LoadingBarComponent } from '../../shared/loading-bar/loading-bar.component';
@@ -18,35 +15,35 @@ import { LoadingBarComponent } from '../../shared/loading-bar/loading-bar.compon
 
 @Component({
   selector: 'app-full-calendar',
-  imports: [LoadingBarComponent , FullCalendarModule],
+  imports: [LoadingBarComponent, FullCalendarModule],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
 export class CalendarComponent implements OnInit {
-   eventService = inject(EventService);
+  eventService = inject(EventService);
 
 
   events: EventInput[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     plugins: [
-      dayGridPlugin, 
+      dayGridPlugin,
       interactionPlugin,
       timeGridPlugin,
     ],
-    
-    events: this.events, 
+
+    events: this.events,
     dateClick: (arg: DateClickArg) => this.handleDateClick(arg),
     eventClick: (arg) => this.handleEventClick(arg),
     headerToolbar: {
-      start: 'title',           
-      center: '',               
+      start: 'title',
+      center: '',
       end: 'prev,next today dayGridMonth,timeGridWeek,timeGridDay'
     },
-    height: 'auto', 
+    height: 'auto',
     contentHeight: 'auto',
     aspectRatio: 0.7,
   };
@@ -60,17 +57,15 @@ export class CalendarComponent implements OnInit {
   loadEvents(): void {
     this.eventService.getAllEvents().subscribe({
       next: (data: calendarEvent[]) => {
-        console.log('Events loaded:', data);
-        
         this.events = data.map(event => ({
           id: event.id?.toString(),
-          title: event.title, 
+          title: event.title,
           start: this.eventService.formatDate(new Date(event.startAt)),
-          end: event.endAt ? this.eventService.formatDate(new Date(event.endAt)) : undefined,  
-          description: event.description, 
+          end: event.endAt ? this.eventService.formatDate(new Date(event.endAt)) : undefined,
+          description: event.description,
           color: event.color || undefined
         }));
-        this.calendarOptions.events = this.events; 
+        this.calendarOptions.events = this.events;
       },
       error: (error: any) => {
         console.error('Error loading events:', error);
@@ -81,12 +76,9 @@ export class CalendarComponent implements OnInit {
     });
   }
 
-
   handleDateClick(arg: DateClickArg) {
-    const date = arg.date; // Fecha seleccionada
-    console.log('date:', date);
-    
-    this.eventService.setSelectedDate(date);  
+    const date = arg.date;
+    this.eventService.setSelectedDate(date);
     this.router.navigate(['/addEvent']);
   }
 

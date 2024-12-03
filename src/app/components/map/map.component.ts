@@ -17,6 +17,12 @@ export class MapComponent implements AfterViewInit{
   filterTheatreList: Theatre[] = [];
   markers: L.Marker[] = []; 
 
+  checkboxStates = {
+    accessible: false,
+    noAccessible: false,
+  };
+  
+
   customIcon = L.icon({
     iconUrl: 'assets/leaflet/marker-icon.png', // Ruta a tu icono
     shadowUrl: 'assets/leaflet/marker-shadow.png', // Ruta a la sombra
@@ -36,7 +42,6 @@ export class MapComponent implements AfterViewInit{
 
   private initMap() {
     this.map = L.map('map').setView([41.40217, 2.19326], 13);
-
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 20,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -50,15 +55,12 @@ export class MapComponent implements AfterViewInit{
         const coords: [number, number] = [position.coords.latitude, position.coords.longitude];
 
         if (this.userMarker) {
-          // this.userMarker = L.marker(coords);
         } else {
           this.userMarker = L.marker(coords, { icon: this.customIcon }).addTo(this.map)
             .bindPopup('Estás aquí')
             .openPopup();
           this.markers.push(this.userMarker);
-
         }
-
         this.map.setView(coords, 18)
       }, () => {
         alert('No se pudo obtener la geolocalización')
@@ -73,22 +75,40 @@ export class MapComponent implements AfterViewInit{
     this.cleanMap();
     this.theatreService.getListTheatres().subscribe((data: Theatre[]) => {
       this.listTheatres = data;
-      this.addMarkers();
+      this.addMarkers(this.listTheatres);
     })
   }
 
-  filterTheatres() {
+  filterTheatres(event: Event) {
+    const target = event.target as HTMLInputElement; 
+    const value = target.value as 'accessible' | 'noAccessible'; 
+    const isChecked = target.checked;
+
+    this.checkboxStates[value] = isChecked;
+
     this.cleanMap();
-    this.theatreService.getListTheatres().subscribe((data: Theatre[]) => {
-      this.filterTheatreList = data.filter(item => item.accessible === true);
-      this.addMarkers();
+    this.filterTheatreList = [];
+
+    this.theatreService.getListTheatres().subscribe((data: Theatre[]) => { 
+      let filteredList: Theatre[] = [];
+
+      if (this.checkboxStates['accessible']) {
+        filteredList = filteredList.concat(data.filter(item => item.accessible === true));
+      } 
+
+      if (this.checkboxStates['noAccessible']) {
+        filteredList = filteredList.concat(data.filter(item => item.accessible === false));
+      } 
+
+      this.filterTheatreList = filteredList;
+      this.addMarkers(this.filterTheatreList);
     })
   }
 
 
-  addMarkers() {  
+  addMarkers(theatres: Theatre[]) {  
     const bounds = L.latLngBounds([]); 
-    this.listTheatres.forEach(item => {
+    theatres.forEach(item => {
       if (item.latitude && item.longitude) {
         const marker = L.marker([item.latitude, item.longitude], { icon: this.customIcon })
           .addTo(this.map)

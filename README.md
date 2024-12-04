@@ -1,27 +1,75 @@
-# S8Inprocode
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+# Inprocode Frontend
 
-## Development server
+Este es el frontend del proyecto **Inprocode**, desarrollado con **Angular 19**. Este proyecto incluye un calendario interactivo, un mapa con filtros de categorías y gráficos dinámicos para ofrecer una experiencia completa.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Requisitos previos
 
-## Code scaffolding
+Antes de empezar, asegúrate de tener instalados los siguientes programas:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Node.js** (versión recomendada: 18+)
+- **NPM** (instalado con Node.js)
+- **Angular CLI** (versión recomendada: 16+)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Clonación del repositorio
 
-## Running unit tests
+Clona el repositorio con el siguiente comando:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+git clone https://github.com/mcallejo-10/S8-Inprocode.git
+cd S8-Inprocode
+```
 
-## Running end-to-end tests
+## Instalación de dependencias
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Ejecuta el siguiente comando para instalar las dependencias del proyecto:
 
-## Further help
+```bash
+npm install
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Configuración
+
+Este proyecto está configurado para interactuar con el backend del repositorio [Inprocode Backend](https://github.com/mcallejo-10/S8-Inprocode-Backend.git). Asegúrate de que el backend esté funcionando antes de iniciar el frontend.
+
+
+## Inicio del servidor de desarrollo
+
+Inicia el servidor con el siguiente comando:
+
+```bash
+ng serve
+```
+
+El proyecto estará disponible en [http://localhost:4200](http://localhost:4200).
+
+    # Configuración del proyecto Angular
+
+
+## Características principales
+
+### 1. Calendario (FullCalendar)
+- Muestra eventos interactivos con posibilidad de filtrado.
+- Permite agregar, editar y eliminar eventos desde un modal.
+- Las actualizaciones se sincronizan con el backend.
+
+### 2. Mapa (Leaflet)
+- Incluye un mapa con marcadores categorizados.
+- Ofrece un filtro dinámico para mostrar categorías específicas.
+
+### 3. Gráficos (Chart.js)
+- Muestra estadísticas dinámicas con gráficos personalizables.
+
+### 4. Diseño moderno
+- Utiliza **Bootstrap 5** para un diseño limpio y responsivo.
+
+
+
+## Recursos adicionales
+
+- [Angular Documentation](https://angular.io/docs)
+- [FullCalendar Documentation](https://fullcalendar.io/docs)
+- [Leaflet Documentation](https://leafletjs.com/)
+- [Chart.js Documentation](https://www.chartjs.org/)
+

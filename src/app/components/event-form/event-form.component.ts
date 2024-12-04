@@ -94,6 +94,23 @@ export class EventFormComponent {
     }
   }
 
+  deleteEvent() {
+
+    this.loading = true;
+    this.eventService.deleteEvent(this.id).subscribe({
+      next: () => {
+        this.toastr.warning('Evento eliminado con éxito', 'Evento eliminado');
+        this.router.navigate(['/full-calendar']);
+      },
+      error: (error: any) => {
+        console.error('Error loading events:', error);
+      }
+    });
+    this.loading = false;
+
+  }
+
+
   getEvent(id: number) {
     this.loading = true;
     this.eventService.getEvent(id).subscribe({

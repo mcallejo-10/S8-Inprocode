@@ -73,25 +73,21 @@ $btn-bd-primary: #2f4f4f;
   padding: 0.4rem;
 }
 
-/* Botón al pasar el mouse */
 .fc-toolbar .fc-button:hover {
   background-color: $secondary-color, 10%;
   /* Azul más claro */
 }
 
-/* Botón activo */
 .fc-toolbar .fc-button.fc-button-active {
   background-color: $primary-color;
-  /* Fondo principal */
-  color: white;
+   color: white;
 }
 
 /* Botones del header */
 .fc-header-toolbar .fc-toolbar-chunk button {
   font-size: 1rem;
-  /* Tamaño base */
   padding: 0.5rem 1rem;
-  /* Espaciado base */
+ 
 }
 
 @media (max-width: 768px) {
@@ -113,11 +109,10 @@ $btn-bd-primary: #2f4f4f;
 /* Contenedor de los botones */
 .fc-header-toolbar {
   display: flex;
-  flex-wrap: wrap; /* Permite que los botones se ajusten */
+  flex-wrap: wrap; 
   justify-content: space-between;
 }
 
-/* Alineación de botones en pantallas pequeñas */
 @media (max-width: 768px) {
   .fc-header-toolbar {
     flex-direction: column;
@@ -125,28 +120,25 @@ $btn-bd-primary: #2f4f4f;
   }
 
   .fc-toolbar-chunk {
-    margin: 0.5rem 0; /* Espaciado entre grupos */
+    margin: 0.5rem 0; 
   }
 }
 
 
-/* Cambiar el color del texto general del calendario */
+/* Color del texto general del calendario */
 .fc {
   color: $primary-color;
 }
 
 /* Fondo de los días del calendario */
 .fc-daygrid-day {
-  background-color: $background-color;
-  /* Fondo suave */
+  background-color: $background-color; 
   color: $primary-color;
-  /* Texto gris oscuro */
 }
 
 /* Día actual resaltado */
 .fc-day-today {
-  background-color: #acfae0;
-  /* Verde claro */
+  background-color: #36cc9a;
   color: white;
   font-weight: bold;
 }
@@ -154,14 +146,11 @@ $btn-bd-primary: #2f4f4f;
 /* Colores de los eventos */
 .fc-event {
   background-color: $background-color;
-  /* Azul acero */
   border-color: $primary-color;
-  /* Borde gris oscuro */
   color: $secondary-color;
   font-family: Montserrat, monospace;
-  font-size: small;
-  font-size: 0.9rem;
-  /* Tamaño base */
+  font-weight: light;
+  font-size: 0.7rem;
 }
 
 @media (max-width: 768px) {
@@ -177,16 +166,11 @@ $btn-bd-primary: #2f4f4f;
 }
 
 
-/* Evento al pasar el mouse */
 .fc-event:hover {
   background-color: $highlight-color, 10%;
 
   cursor: pointer;
 }
-
-
-
-
 
 
 body {

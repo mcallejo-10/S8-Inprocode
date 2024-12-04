@@ -75,18 +75,20 @@
                         </form>
 
                         <div class="row mt-4 text-center">
-                            <div class="col-6">
-                                <a class="btn btn-sm btn-secondary" routerLink="/full-calendar">Volver</a>
+                            <div class="col-4">
+                                <a class="btn btn-sm btn-outline-secondary" routerLink="/full-calendar">Volver</a>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-4">
                                 <button type="submit" (click)="addEvent()"
-                                    class="btn btn-sm btn-primary">Aceptar</button>
+                                    class="btn btn-sm btn-outline-warning">Aceptar</button>
                             </div>
-                            <div class="col-6">
+                            @if (id != 0) {
+                            <div class="col-4">
                                 <button type="submit" (click)="deleteEvent()"
-                                    class="btn btn-sm btn-primary">Aceptar</button>
+                                    class="btn btn-sm btn-outline-danger">Eliminar</button>
                             </div>
+                            }
                         </div>
 
 

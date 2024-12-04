@@ -99,7 +99,7 @@ export class EventFormComponent {
     this.loading = true;
     this.eventService.deleteEvent(this.id).subscribe({
       next: () => {
-        this.toastr.warning('Evento eliminado con éxito', 'Evento eliminado');
+        this.toastr.error('Evento eliminado con éxito', 'Evento eliminado');
         this.router.navigate(['/full-calendar']);
       },
       error: (error: any) => {
